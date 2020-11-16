@@ -47,7 +47,6 @@ class App extends React.Component {
     return (
       <div>
         <NavBar />
-        <h1>Blog</h1>
         <Router>
           <Switch>
             <Route path="/addpost">
@@ -58,9 +57,6 @@ class App extends React.Component {
             </Route>
             <Route path="/home">
               <Main />
-            </Route>
-            <Route path="/blog">
-              <BlogPost />
             </Route>
           </Switch>
         </Router>

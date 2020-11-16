@@ -1,5 +1,5 @@
 import React from 'react';
-import BlogList from '../components/BlogItem';
+import BlogList from '../components/BlogList';
 import AddPost from '../components/AddPost';
 
 class Main extends React.Component {
@@ -30,9 +30,10 @@ class Main extends React.Component {
   render() {
     return (
       <div>
+        <h1>Blog</h1>
         <AddPost addNewTitle={this.addNewTitle}/>
         {/*this.getTitles(this.state.postListing)*/}
-        <BlogList blogList={this.state.blogs} />
+        <BlogList blogList={this.state.postListing} />
       </div>
     );
   }
