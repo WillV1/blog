@@ -15,7 +15,7 @@ function NavBar() {
         <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="#home">Navbar</Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link href="/home">Home</Nav.Link>
+          <Nav.Link href="/blog">Home</Nav.Link>
           <Nav.Link href="/addpost">Add Post</Nav.Link>
           <Nav.Link href="/profile">Profile</Nav.Link>
         </Nav>

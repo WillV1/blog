@@ -4,12 +4,11 @@ import AddPost from './components/AddPost';
 import Profile from './pages/Profile';
 import BlogPost from './pages/BlogPost';
 import Main from './pages/Main';
-// import BlogItem from './components/BlogItem';
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,50 +16,51 @@ import './App.css';
 
 class App extends React.Component {
 
-  // constructor(props) {
-  //   super(props)
+  constructor(props) {
+    super(props)
 
-  //   this.state = {
-  //     postListing: [],
-  //   }
-  // }
+    this.state = {
+      postListing: [],
+    }
+  }
 
-  // addNewTitle = (blogTitle) => {
+  addNewPost = (blogId, blogTitle, blogText) => {
 
-  //   const newTitle = {title: blogTitle}
+    const newPost = {
+      id: blogId,
+      title: blogTitle,
+      text: blogText
+    }
 
-  //   this.setState((prevState) => {
-  //     const updatedTitleList = prevState.postListing.slice();
-  //     updatedTitleList.push(newTitle)
+    this.setState((prevState) => {
+      const updatedTitleList = prevState.postListing.slice();
+      updatedTitleList.push(newPost)
 
-  //     return {postListing: updatedTitleList}
-  //   })
-  // }
+      console.log(newPost)
 
-  // getTitles(titles) {
-  //   return titles.map((blog, index) => {
-  //     return <BlogItem key={index} blog={blog} />
-  //   })
-  // }
-  
+      return {postListing: updatedTitleList}
+    })
+  }
+
   render() {
+
     return (
       <div>
         <NavBar />
         <Router>
           <Switch>
-            <Route path="/addpost">
-              <AddPost addNewTitle={this.addNewTitle}/>
-            </Route>
-            <Route path="/profile">
-              <Profile />
-            </Route>
-            <Route path="/home">
-              <Main />
-            </Route>
+            <Route path="/addpost" component={AddPost} />
+            <Route path="/profile" component={Profile} />
+            <Route exact path="/blog" 
+            render={(props) => <Main {...props} 
+            list={this.state.postListing}
+            addNewPost={this.addNewPost}
+            />} />
+            <Route path="/blog/:id" 
+            render={(props) => <BlogPost {...props} 
+            blog={this.state.postListing} />} />
           </Switch>
         </Router>
-        {/*this.getTitles(this.state.postListing)*/}
       </div>
     );
   }
