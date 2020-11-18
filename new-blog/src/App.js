@@ -42,6 +42,13 @@ class App extends React.Component {
     })
   }
 
+  deletePost = (post) => {
+    let posts = this.state.postListing.filter((post) => {
+      return post.id !== post.id
+    })
+    this.setState({posts})
+  }
+
   render() {
 
     return (
@@ -58,7 +65,7 @@ class App extends React.Component {
             />} />
             <Route path="/blog/:id" 
             render={(props) => <BlogPost {...props} 
-            blog={this.state.postListing} />} />
+            blog={this.state.postListing} deletePost={this.deletePost}/>} />
           </Switch>
         </Router>
       </div>

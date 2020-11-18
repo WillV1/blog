@@ -2,6 +2,11 @@ import Card from 'react-bootstrap/Card';
 
 const PostDisplay = (props) => {
   console.log(props)
+
+  const deletePost = () => {
+    props.deletePost(props.post)
+  }
+
   return (
     <Card>
     <Card.Body>
@@ -9,6 +14,7 @@ const PostDisplay = (props) => {
     <Card.Text>
         {props.post.text}
       </Card.Text>
+    <button onClick={deletePost}>Delete Post</button>
     </Card.Body>
   </Card>
   )
