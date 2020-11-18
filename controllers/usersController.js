@@ -2,21 +2,21 @@ const db = require('../models');
 
 //index route
 const index = (req, res) => {
-  db.Blog.find({})
-  .then((foundBlogs) => {
-    res.json({blogs: foundBlogs})
+  db.User.find({})
+  .then((foundUser) => {
+    res.json({users: foundUser})
   })
   .catch((err) => {
     console.log('Error on index.route', err);
-    res.json({Error: 'Unable to retrieve data'})
+    res.json({Error: 'Unable to retrieve user'})
   })
 };
 
 //show post
 const show = (req, res) => {
-  db.Blog.findById(req.params.id)
-  .then((foundBlog) => {
-    res.json({blog: foundBlog})
+  db.User.findById(req.params.id)
+  .then((foundUser) => {
+    res.json({user: foundUser})
   })
   .catch((err) => {
     console.log('Error on show route', err)
@@ -26,9 +26,9 @@ const show = (req, res) => {
 
 //post route
 const create = (req, res) => {
-  db.Blog.create(req.body)
-  .then((savedBlog) => {
-    res.json({blog: savedBlog})
+  db.User.create(req.body)
+  .then((savedUser) => {
+    res.json({user: savedUser})
   })
   .catch((err) => {
     console.log('Error on create route', err)
@@ -36,15 +36,15 @@ const create = (req, res) => {
   })
 };
 
-//put route 
+//put route
 const update = (req, res) => {
-  db.Blog.findByIdAndUpdate(
+  db.User.findByIdAndUpdate(
     req.params.id,
     req.body,
     {new: true}
   )
-  .then((updatedBlog) => {
-    res.json({blog: updatedBlog})
+  .then((updatedUser) => {
+    res.json({user: updatedUser})
   })
   .catch((err) => {
     console.log('Error on update route', err)
@@ -54,9 +54,9 @@ const update = (req, res) => {
 
 //delete route
 const destroy = (req, res) => {
-  db.Blog.findByIdAndDelete(req.params.id)
-  .then((deletedBlog) => {
-    res.json({blog: deletedBlog})
+  db.User.findByIdAndDelete(req.params.id)
+  .then((deletedUser) => {
+    res.json({user: deletedUser})
   })
   .catch((err) => {
     console.log('Error on delete route', err)
