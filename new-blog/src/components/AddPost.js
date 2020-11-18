@@ -5,7 +5,7 @@ class AddPost extends React.Component {
     super(props)
 
     this.state = {
-      id: '',
+      date: '',
       title: '',
       text: ''
     }
@@ -14,10 +14,10 @@ class AddPost extends React.Component {
   handleFormSubmit = (e) => {
     e.preventDefault()
 
-    this.props.addNewPost(this.state.id, this.state.title, this.state.text);
+    this.props.addNewPost(this.state.date, this.state.title, this.state.text);
 
     this.setState({
-      id: '',
+      date: '',
       title: '',
       text: ''
     })
@@ -28,7 +28,7 @@ class AddPost extends React.Component {
       <div>
         <h1>AddPost</h1>
         <form>
-        <input name="id" onChange={(e) => this.setState({[e.target.name]: e.target.value})} type="number" />
+        <input name="date" onChange={(e) => this.setState({[e.target.name]: e.target.value})} type="date" />
           <input name="title" placeholder="Title" onChange={(e) => this.setState({[e.target.name]: e.target.value})} type="text" />
           <input name="text" placeholder="Text" onChange={(e) => this.setState({[e.target.name]: e.target.value})} type="text" />
           <input onClick={this.handleFormSubmit} type="submit" value="Add Post" />

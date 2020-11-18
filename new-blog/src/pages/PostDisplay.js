@@ -12,6 +12,9 @@ const PostDisplay = (props) => {
     <Card.Body>
     <Card.Title>{props.post.title}</Card.Title>
     <Card.Text>
+        {props.post.date}
+      </Card.Text>
+    <Card.Text>
         {props.post.text}
       </Card.Text>
     <button onClick={deletePost}>Delete Post</button>

@@ -3,10 +3,6 @@ import BlogList from '../components/BlogList';
 import AddPost from '../components/AddPost';
 
 function Main (props) {
-  
-  // const blogList = props.list.map((blog, index) => {
-  //   return <BlogList key={index} blog={blog} />
-  // }) 
 
     return (
       <div>

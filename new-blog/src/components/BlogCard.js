@@ -7,7 +7,7 @@ const BlogCard = (props) => {
   return (
     <Card>
     <Card.Body>
-    <Link to={`/blog/${props.blog.id}`}><Card.Title>{props.blog.title}</Card.Title></Link>
+    <Link to={`/blog/${props.blog._id}`}><Card.Title>{props.blog.title}</Card.Title></Link>
     </Card.Body>
   </Card>
   )

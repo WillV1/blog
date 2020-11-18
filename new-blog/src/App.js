@@ -24,10 +24,10 @@ class App extends React.Component {
     }
   }
 
-  addNewPost = (blogId, blogTitle, blogText) => {
+  addNewPost = (blogDate, blogTitle, blogText) => {
 
     const newPost = {
-      id: blogId,
+      date: blogDate,
       title: blogTitle,
       text: blogText
     }
@@ -44,7 +44,7 @@ class App extends React.Component {
 
   deletePost = (post) => {
     let posts = this.state.postListing.filter((post) => {
-      return post.id !== post.id
+      return post._id !== post._id
     })
     this.setState({posts})
   }
