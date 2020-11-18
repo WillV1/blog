@@ -6,35 +6,35 @@ const db = require('../models');
 router.get('/', (req, res) => {})
 
 //create route
-router.get('/addpost', (req, res) => {})
+router.get('/new', (req, res) => {})
 
 //post route
 router.post('/', (req, res) => {
-  db.Blog.create((err, newBlogPost) => {
+  db.Profile.create((err, newProfile) => {
     if(err) return console.log(err)
   })
 })
 
-//show post
+//show profile
 router.get('/:id', (req, res) => {
-  db.Blog.findById(req.params.id, (err, blog) => {
+  db.Profile.findById(req.params.id, (err, blog) => {
     if(err) return console.log(err);
   })
 })
 
 //edit route
 router.get('/:id/edit', (req, res) => {
-  db.Blog.findById(req.params.id, (err, blogToEdit) => {
+  db.Profile.findById(req.params.id, (err, profileToEdit) => {
     if (err) return console.log(err)
   })
 })
 
-//put route 
+//put route
 router.put('/:id', (req, res) => {
-  db.Blog.findByIdAndUpdate(
+  db.Profile.findByIdAndUpdate(
     req.params.id,
     {new: true},
-    (err, updatedBlog) => {
+    (err, updatedProfile) => {
       if(err) return console.log(err);
     }
   )
@@ -42,7 +42,7 @@ router.put('/:id', (req, res) => {
 
 //delete route
 router.delete('/:id', (req, res) => {
-  db.Blog.findByIdAndDelete(req.params.id, (err, blogToDelete) => {
+  db.Profile.findByIdAndDelete(req.params.id, (err, profileToDelete) => {
     if(err) return console.log(err);
   })
 })

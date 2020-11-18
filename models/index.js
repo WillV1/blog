@@ -12,5 +12,6 @@ mongoose.connection.on('connected', () => console.log('MongoDB connected'));
 mongoose.connection.on('error', (err) => console.log(err));
 
 module.exports = {
-  Blog: require('./Blog')
+  Blog: require('./Blog'),
+  Profile: require('./Profile')
 };
