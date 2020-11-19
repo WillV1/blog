@@ -11,7 +11,8 @@ class Profile extends React.Component {
   componentDidMount() {
     axios.get(`http://localhost:3001/users/:id`)
       .then(res => {
-        const user = res.data;
+        console.log(res.data)
+        const userProfile = res.data;
         this.setState({userProfile})
       })
   }
@@ -19,7 +20,7 @@ class Profile extends React.Component {
   render() {
     return (
       <div>
-      <ProfileCard profile={this.state.userProfile} />
+        <ProfileCard profile={this.state.userProfile} />
       </div>
     );
   }

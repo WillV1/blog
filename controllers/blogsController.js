@@ -4,7 +4,7 @@ const db = require('../models');
 const index = (req, res) => {
   db.Blog.find({})
   .then((foundBlogs) => {
-    res.json({blogs: foundBlogs})
+    res.json({posts: foundBlogs})
   })
   .catch((err) => {
     console.log('Error on index.route', err);
@@ -16,7 +16,7 @@ const index = (req, res) => {
 const show = (req, res) => {
   db.Blog.findById(req.params.id)
   .then((foundBlog) => {
-    res.json({blog: foundBlog})
+    res.json({post: foundBlog})
   })
   .catch((err) => {
     console.log('Error on show route', err)
@@ -28,7 +28,7 @@ const show = (req, res) => {
 const create = (req, res) => {
   db.Blog.create(req.body)
   .then((savedBlog) => {
-    res.json({blog: savedBlog})
+    res.json({post: savedBlog})
   })
   .catch((err) => {
     console.log('Error on create route', err)
@@ -44,7 +44,7 @@ const update = (req, res) => {
     {new: true}
   )
   .then((updatedBlog) => {
-    res.json({blog: updatedBlog})
+    res.json({post: updatedBlog})
   })
   .catch((err) => {
     console.log('Error on update route', err)
@@ -56,7 +56,7 @@ const update = (req, res) => {
 const destroy = (req, res) => {
   db.Blog.findByIdAndDelete(req.params.id)
   .then((deletedBlog) => {
-    res.json({blog: deletedBlog})
+    res.json({post: deletedBlog})
   })
   .catch((err) => {
     console.log('Error on delete route', err)

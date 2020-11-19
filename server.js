@@ -12,7 +12,7 @@ const POST = process.env.PORT || 3001;
 //routes
 const routes = require('./routes');
 
-//middleware
+//middleware -------------------------------
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cors({
   origin: "http://localhost:3000",
@@ -26,9 +26,12 @@ app.use(session({
 }));
 
 app.use(cookieParser("secretcode"));
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/passport')(passport);
 
 
-//routes
+//routes -----------------------------
 app.use('/register', routes.register);
 app.use('/login', routes.login);
 app.use('/blogs', routes.blogs);

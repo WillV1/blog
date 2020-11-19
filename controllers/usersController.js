@@ -1,4 +1,5 @@
 const db = require('../models');
+const bcrypt = require('bcrypt');
 
 //index route
 const index = (req, res) => {
@@ -26,13 +27,20 @@ const show = (req, res) => {
 
 //post route
 const create = (req, res) => {
-  db.User.create(req.body)
-  .then((savedUser) => {
-    res.json({user: savedUser})
-  })
-  .catch((err) => {
-    console.log('Error on create route', err)
-    res.json({Error: 'Unable to save data'})
+  db.User.findOne({username: req.body.username}, async (err, user) => {
+    if (err) return console.log(err);
+    if (user) res.send("User already exists");
+    if (!user) {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      await db.User.create({username: req.body.username, password: hashedPassword})
+      .then((savedUser) => {
+        res.json({user: savedUser})
+      })
+      .catch((err) => {
+        console.log('Error on create route', err)
+        res.json({Error: 'Unable to save data'})
+      })
+    }
   })
 };
 
