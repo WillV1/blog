@@ -4,6 +4,8 @@ import AddPost from './components/AddPost';
 import Profile from './pages/Profile';
 import BlogPost from './pages/BlogPost';
 import Main from './pages/Main';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
 
 import {
   BrowserRouter as Router,
@@ -56,6 +58,8 @@ class App extends React.Component {
         <NavBar />
         <Router>
           <Switch>
+            <Route path="/signup" component={Signup} />
+            <Route path="/login" component={Login} />
             <Route path="/addpost" component={AddPost} />
             <Route path="/profile" component={Profile} />
             <Route exact path="/blog" 
