@@ -13,14 +13,18 @@ class Signup extends React.Component {
   handleFormSubmit = (e) => {
     e.preventDefault()
 
-    console.log(this.state.username, this.state.password)
+    const user = {
+      username: this.state.username,
+      password: this.state.password
+    }
 
-    this.setState({
-      username: '',
-      password: '',
-    })
-
+    axios.post(`http://localhost:3001/register`, {user})
+      .then(res => {
+        console.log(res);
+        console.log(res.data)
+      })
   }
+
   render() {
     return (
       <div>

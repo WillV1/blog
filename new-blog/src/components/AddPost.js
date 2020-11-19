@@ -14,13 +14,19 @@ class AddPost extends React.Component {
   handleFormSubmit = (e) => {
     e.preventDefault()
 
-    this.props.addNewPost(this.state.date, this.state.title, this.state.text);
+    // this.props.addNewPost(this.state.date, this.state.title, this.state.text);
 
-    this.setState({
-      date: '',
-      title: '',
-      text: ''
-    })
+    const post = {
+      date: this.state.date,
+      title: this.state.title,
+      text: this.state.text
+    }
+
+    axios.post(`http://localhost:3001/blogs`, {post})
+      .then(res => {
+        console.log(res);
+        console.log(res.data)
+      })
 
   }
   render() {
