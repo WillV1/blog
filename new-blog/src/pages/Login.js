@@ -6,7 +6,7 @@ class Login extends React.Component {
     super(props)
 
     this.state = {
-      username: '',
+      email: '',
       password: '',
     }
   }
@@ -15,15 +15,23 @@ class Login extends React.Component {
     e.preventDefault()
 
     const user = {
-      username: this.state.username,
+      email: this.state.email,
       password: this.state.password
     }
 
     axios.post(`http://localhost:3001/login`, {user})
-      .then(res => {
-        console.log(res);
-        console.log(res.data)
-      })
+    .then(res => {
+      console.log(res)
+      if (res.data) {
+        this.props.history.push('/blog')
+      } else {
+        console.log('Sign-up error')
+      }
+    })
+    .catch(err => {
+      console.log('Sign-up error')
+      console.log(err)
+    }) 
   }
 
   render() {
@@ -31,11 +39,11 @@ class Login extends React.Component {
       <div>
         <h1>Login</h1>
         <form>
-          <label htmlFor="username">Username</label>
-          <input name="username" placeholder="Username" onChange={(e) => this.setState({[e.target.name]: e.target.value})} type="text" />
+          <label htmlFor="email">Email</label>
+          <input name="email" placeholder="Email" onChange={(e) => this.setState({[e.target.name]: e.target.value})} type="email" />
           <label htmlFor="password">Password</label>
           <input name="password" placeholder="Text" onChange={(e) => this.setState({[e.target.name]: e.target.value})} type="password" />
-          <input onClick={this.handleFormSubmit} type="submit" value="Signup" />
+          <input onClick={this.handleFormSubmit} type="submit" value="Login" />
         </form>
       </div>
     );

@@ -10,7 +10,8 @@ const ProfileCard = (props) => {
   return (
     <Card>
     <Card.Body>
-    <Card.Title>{props.profile.username}</Card.Title>
+    <Card.Title>{props.profile.email}</Card.Title>
+    <Card.Text>{props.profile.username}</Card.Text>
     <Card.Text>
         My Bio: {props.profile.bio}
       </Card.Text>

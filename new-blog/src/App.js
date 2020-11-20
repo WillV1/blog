@@ -1,12 +1,12 @@
 import React from 'react';
-import BlogModel from '../models/blog';
-import AddPost from '../components/AddPost';
-import Home from '../pages/Home';
-import Profile from '../pages/Profile';
-import BlogPost from '../pages/BlogPost';
-import Signup from '../pages/Signup';
-import Login from '../pages/Login';
-import BlogsContainer from '../containers/BlogsContainer';
+import BlogModel from './models/blog';
+import AddPost from './components/AddPost';
+import Home from './pages/Home';
+import Profile from './pages/Profile';
+import BlogPost from './pages/BlogPost';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import BlogsContainer from './containers/BlogsContainer';
 
 import {
   BrowserRouter as Router,
@@ -33,8 +33,8 @@ class App extends React.Component {
   };
 
   fetchData = () => {
-    BlogModel.all().then((data) => {
-      this.state ({
+    BlogModel.all().then((res) => {
+      this.setState ({
         postListing: res.data.blogs
       })
     })
@@ -83,7 +83,7 @@ class App extends React.Component {
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/signup" component={Signup} />
+            <Route path="/register" component={Signup} />
             <Route path="/login" component={Login} />
             <Route path="/addpost" component={AddPost} />
             <Route path="/profile" component={Profile} />

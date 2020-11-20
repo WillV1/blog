@@ -27,21 +27,29 @@ const show = (req, res) => {
 
 //post route
 const create = (req, res) => {
-  db.User.findOne({username: req.body.username}, async (err, user) => {
-    if (err) return console.log(err);
-    if (user) res.send("User already exists");
-    if (!user) {
-      const hashedPassword = await bcrypt.hash(req.body.password, 10);
-      await db.User.create({username: req.body.username, password: hashedPassword})
-      .then((savedUser) => {
-        res.json({user: savedUser})
-      })
-      .catch((err) => {
-        console.log('Error on create route', err)
-        res.json({Error: 'Unable to save data'})
-      })
+  console.log(req.body);
+  db.User.findOne({ email: req.body.user.email }).then(user => {
+    if (user) {
+      return res.status(400).json({ email: "Email already exists" });
+    } else {
+      const newUser = new db.User({
+        email: req.body.user.email,
+        password: req.body.user.password
+      });
+
+// Hash password before saving in database
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          if (err) throw err;
+          newUser.password = hash;
+          newUser
+            .save()
+            .then(user => res.json(user))
+            .catch(err => console.log(err));
+        });
+      });
     }
-  })
+  });
 };
 
 //put route
