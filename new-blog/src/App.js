@@ -6,7 +6,7 @@ import Profile from './pages/Profile';
 import BlogPost from './pages/BlogPost';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import BlogsContainer from './containers/BlogsContainer';
+import BlogList from './components/BlogList';
 
 import {
   BrowserRouter as Router,
@@ -24,42 +24,43 @@ class App extends React.Component {
     super(props)
 
     this.state = {
-      postListing: []
+      posts: []
     }
   }
 
   componentDidMount() {
+    fetch('http://localhost:3001/').then(res => {
+      console.log(res)
+    })
     this.fetchData();
   };
 
   fetchData = () => {
     BlogModel.all().then((res) => {
       this.setState ({
-        postListing: res.data.blogs
+        posts: res.data.posts
       })
     })
   };
 
   addNewPost = (post) => {
     const newPost = {
-      body: post
+      post
     }
 
     BlogModel.create(newPost).then((res) => {
-      let posts = this.state.postListing;
+      let posts = [];
+      console.log(posts)
       posts.push(res.data);
-      this.setState({postListing: posts})
-      .then((res) => {
-        this.props.history.push('/blog')
-      })
+      this.setState({...posts})
     })
   };
 
   deletePost = (post) => {
     BlogModel.delete(post).then((res) => {
-      let posts = this.state.postListing.filter((post) => {
+      let posts = this.state.posts.filter((post) => {
         return post._id !== res.data._id})
-      this.setState({postListing: posts})
+      this.setState({posts: posts})
     })
   };
 
@@ -70,9 +71,9 @@ class App extends React.Component {
 
     BlogModel.update(post) 
       .then((res) => {
-        let posts = this.state.postListing;
+        let posts = this.state.posts;
         posts.find(updatedPost).body = post.body;
-        this.setState({postListing: posts})
+        this.setState({posts: posts})
       });
   };
 
@@ -85,14 +86,16 @@ class App extends React.Component {
             <Route exact path="/" component={Home} />
             <Route path="/register" component={Signup} />
             <Route path="/login" component={Login} />
-            <Route path="/addpost" component={AddPost} />
+            <Route path="/addpost" render={(props) => <AddPost {...props} 
+            addNewPost={this.addNewPost} />} />
             <Route path="/profile" component={Profile} />
-            <Route exact path="/blog" 
-            render={(props) => <BlogsContainer {...props} 
-            list={this.state.postListing} />} />
+            <Route path="/blog" 
+            render={(props) => <BlogList {...props} 
+            blogList={this.state.posts} />} />
             <Route path="/post/:id" 
             render={(props) => <BlogPost {...props} 
-            blog={this.state.postListing} 
+            blog={this.state.posts}
+            addNewPost={this.addNewPost} 
             deletePost={this.deletePost}
             updatePost={this.updatePost}/>} />
           </Switch>

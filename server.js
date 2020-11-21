@@ -37,6 +37,7 @@ require('./config/passport')(passport);
 
 //routes
 const routes = require('./routes');
+const { request } = require('express');
 
 //routes -----------------------------
 app.use('/register', routes.register);
@@ -44,6 +45,11 @@ app.use('/login', routes.login);
 app.use('/blogs', routes.blogs);
 app.use('/users', routes.users);
 
+app.get('/', (req, res) => {
+  console.log("It's working!")
+  res.send('Is this working?')
+})
+
 app.listen(POST, () => {
-  console.log(`Express server is running on POST ${POST}`)
+  console.log(`Express server is running on PORT ${POST}`)
 })

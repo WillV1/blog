@@ -22,7 +22,7 @@ module.exports = function(passport) {
     })
   );
   passport.serializeUser((user, cb) => {
-    cb(null, user.id)
+    cb(null, user._id)
   })
   passport.deserializeUser((id, cb) => {
     db.User.findOne({_id: id}, (err,user) => {

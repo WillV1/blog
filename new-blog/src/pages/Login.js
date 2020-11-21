@@ -19,6 +19,8 @@ class Login extends React.Component {
       password: this.state.password
     }
 
+    console.log(user)
+    
     axios.post(`http://localhost:3001/login`, {user})
     .then(res => {
       console.log(res)

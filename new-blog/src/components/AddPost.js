@@ -24,11 +24,7 @@ class AddPost extends React.Component {
 
     this.props.addNewPost(post);
 
-    // axios.post(`http://localhost:3001/blogs`, {post})
-    //   .then(res => {
-    //     console.log(res);
-    //     console.log(res.data)
-    //   })
+    this.props.history.push('/post/:id');
 
   }
   render() {

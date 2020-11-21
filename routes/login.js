@@ -4,7 +4,7 @@ const router = express.Router();
 require('../config/passport');
 
 //routes
-router.post('/'), (req, res, next) => {
+router.post('/', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
     if (err) return console.log(err)
     if (!user) res.send("No User Exists")
@@ -16,6 +16,6 @@ router.post('/'), (req, res, next) => {
       });
     }
   })(req, res, next);
-};
+});
 
 module.exports = router;

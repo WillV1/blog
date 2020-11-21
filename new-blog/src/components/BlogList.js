@@ -9,6 +9,7 @@ console.log(props)
 
   return (
     <div>
+      <h1>My Blog Posts</h1>
       {blogList}
     </div>
   );

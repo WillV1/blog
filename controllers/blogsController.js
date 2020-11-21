@@ -26,7 +26,8 @@ const show = (req, res) => {
 
 //post route
 const create = (req, res) => {
-  db.Blog.create(req.body)
+  console.log(req.body)
+  db.Blog.create(req.body.post)
   .then((savedBlog) => {
     res.json({post: savedBlog})
   })
