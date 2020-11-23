@@ -24,7 +24,7 @@ class AddPost extends React.Component {
 
     this.props.addNewPost(post);
 
-    this.props.history.push('/post/:id');
+    this.props.history.push('/blog');
 
   }
   render() {

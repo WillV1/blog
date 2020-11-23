@@ -2,8 +2,8 @@ import BlogCard from './BlogCard';
 
 function BlogList(props) {
 console.log(props)
-  const blogList = props.blogList.map((blog, index) => {
-      return <BlogCard key={index} blog={blog}
+  const blogList = props.blogList.map((blog) => {
+      return <BlogCard key={blog._id} blog={blog}
       />
     })
 
